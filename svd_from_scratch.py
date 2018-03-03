@@ -1,15 +1,19 @@
-import numpy as n
+imimport numpy as n
 import numpy.linalg as alg
 
 A = n.array([[1,2],[3,4],[5,6]])
-print (A)
+print ("Original Matrix:: \n",A)
 U,s,V = alg.svd(A)
-print(U,)
-print(s,)
-print(V,)
+print("U:: \n",U)
+print("Sigma:: \n",s)
+print("V:: \n",V)
 Sigma = n.zeros((A.shape[0],A.shape[1]))
-print (Sigma)
 Sigma[:A.shape[1],:A.shape[1]] = n.diag(s)
-print (Sigma)
+print ("Sigma NxN:: \n",Sigma)
 B = U.dot(Sigma.dot(V))
-print (B)
+print ("Recomposing:: \n",B)
+d = 1/s
+D=n.zeros(A.shape)
+D[:A.shape[1],:A.shape[1]]=n.diag(d)
+Pinv = U.dot(D.dot(V))
+print ("PsudoInverse:: \n",Pinv)
